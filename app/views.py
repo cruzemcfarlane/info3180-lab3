@@ -7,7 +7,8 @@ This file creates your application.
 """
 
 from app import app
-from flask import render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for
+from sendemail import *
 
 
 ###
@@ -19,6 +20,21 @@ def home():
     """Render website's home page."""
     return render_template('home.html')
 
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+@app.route('/messenger', methods=['POST'])
+def messenger():
+    if request.method == 'POST':
+       fromname = request.form['fromname']
+       fromemail = request.form['fromemail']
+       fromsubject = request.form['fromsubject']
+       msg = request.form['msg']
+       
+       sendemail(fromname, fromemail, fromsubject, msg)
+    return render_template('messenger.html', fromname=fromname, fromemail=fromemail, fromsubject=fromsubject, msg=msg)
+    
 
 @app.route('/about/')
 def about():
@@ -55,4 +71,5 @@ def page_not_found(error):
 
 
 if __name__ == '__main__':
+    sendemail(fromname, fromemail, fromsubject, msg)
     app.run(debug=True,host="0.0.0.0",port="8888")
