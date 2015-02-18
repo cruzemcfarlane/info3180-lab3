@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cruze Form</title>
+  </head>
+  <body>
+    <p>Name: {{ fromname }}</p>
+    <p>Email: {{  fromemail }}</p>
+    <p>Subject: {{ fromsubject }}</p>
+    <p>Message: {{ msg }}</p>
+
+    <code>
+      <pre>
+            @app.route('/messenger/', methods=['POST'])
+            def messenger():
+                fromname = request.form['fromname']
+                fromemail = request.form['fromemail']
+                fromsubject = request.form['fromsubject']
+                msg = request.form['msg']
+                #sendemail(fromname, fromemail, fromsubject, msg)
+                return render_template('messenger.html', fromname=fromname, fromemail=fromemail, fromsubject=fromsubject, msg=msg)
+      </pre>
+    </code>
+  </body>
+</html>

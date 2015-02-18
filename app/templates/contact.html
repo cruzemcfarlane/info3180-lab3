@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cruze</title>
+  </head>
+  <body>
+    <form action="{{ url_for('messenger') }}" method="post">
+      <h1>CONTACT FORM</h1>
+      <p>Fill in this form to contact the site owners.</p><br />
+
+      <h5>Name</h5>
+      <p>Please enter your full name</p>
+      <input type="text" name="fromname" /><br />
+
+      <h5>Email</h5>
+      <p>*</p>
+      <p>Please enter your email address</p>
+      <input type="email" name="fromemail" /><br />
+
+      <h5>Subject</h5>
+      <p>*</p>
+      <input type="text" name="fromsubject" /><br />
+
+      <h5>Message</h5>
+      <p>*</p>
+      <p>Please enter the message you want to send.</p>
+      <textarea rows="5" cols="80" name="msg"></textarea><br>
+
+      <input type="submit" />
+    </form>
+    <code>
+      <pre>
+            @app.route('/contact')
+            def contact():
+                return render_template('contact.html')
+      </pre>
+    </code>
+  </body>
+</html>
